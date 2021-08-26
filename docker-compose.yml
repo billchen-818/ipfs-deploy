@@ -1,0 +1,67 @@
+version: "3"
+
+services:
+  node0:
+    container_name: ipfs-node0
+    image: ipfs:v0.9.0
+    environment:
+      - LOG=${LOG:-ipfs.log}
+    volumes:
+      - ./node0/export:/export
+      - ./node0/data:/data/ipfs
+    ports:
+      - "5001:5001"
+    networks:
+      localnet:
+        ipv4_address: 192.168.20.2
+
+  node1:
+    container_name: ipfs-node1
+    image: ipfs:v0.9.0
+    environment:
+      - LOG=${LOG:-ipfs.log}
+    volumes:
+      - ./node1/export:/export
+      - ./node1/data:/data/ipfs
+    ports:
+      - "5002:5001"
+    networks:
+      localnet:
+        ipv4_address: 192.168.20.3
+
+  node2:
+    container_name: ipfs-node2
+    image: ipfs:v0.9.0
+    environment:
+      - LOG=${LOG:-ipfs.log}
+    volumes:
+      - ./node2/export:/export
+      - ./node2/data:/data/ipfs
+    ports:
+      - "5003:5001"
+    networks:
+      localnet:
+        ipv4_address: 192.168.20.4
+
+  node3:
+    container_name: ipfs-node3
+    image: ipfs:v0.9.0
+    environment:
+      - LOG=${LOG:-ipfs.log}
+    volumes:
+      - ./node3/export:/export
+      - ./node3/data:/data/ipfs
+    ports:
+      - "5004:5001"
+    networks:
+      localnet:
+        ipv4_address: 192.168.20.5
+
+networks:
+  localnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      -
+        subnet: 192.168.20.0/24
